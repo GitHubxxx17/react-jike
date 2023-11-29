@@ -35,3 +35,19 @@ export function delAtricleAPI(id) {
     method: "DELETE",
   });
 }
+
+//获取文章
+export function getAtricleById(id) {
+  return request({
+    url: `/mp/articles/${id}`,
+  });
+}
+
+//获取文章列表
+export function updateAtricleAPI(data) {
+  return request({
+    url: `/mp/articles/${data.id}?draft=false`,
+    method: "PUT",
+    data,
+  });
+}
