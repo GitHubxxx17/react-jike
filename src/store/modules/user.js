@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { clearToken, request } from "@/utils";
 import { getToken, setToken } from "@/utils";
+import { getProfileAPI, loginAPI } from "@/apis/user";
 const userStore = createSlice({
   name: "user",
   // 数据
@@ -35,14 +36,14 @@ const userReducer = userStore.reducer;
 // 异步方法封装
 const fetchLogin = (loginForm) => {
   return async (dispatch) => {
-    const res = await request.post("/authorizations", loginForm);
+    const res = await loginAPI(loginForm);
     dispatch(setUserToken(res.data.token));
   };
 };
 
 const fetchUserInfo = () => {
   return async (dispatch) => {
-    const res = await request.get("/user/profile");
+    const res = await getProfileAPI();
     dispatch(setUserInfo(res.data));
   };
 };
