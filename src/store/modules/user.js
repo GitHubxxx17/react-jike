@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { clearToken, request } from "@/utils";
+import { clearToken } from "@/utils";
 import { getToken, setToken } from "@/utils";
 import { getProfileAPI, loginAPI } from "@/apis/user";
 const userStore = createSlice({
