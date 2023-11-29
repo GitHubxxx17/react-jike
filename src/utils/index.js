@@ -1,3 +1,2 @@
-const { request } = require("./request");
-
-export { request };
+export * from "./token";
+export { request } from "./request";
