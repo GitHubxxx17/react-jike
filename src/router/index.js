@@ -1,16 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import Login from "@/pages/Login";
 import Layout from "@/pages/Layout";
+
 import AuthRoute from "@/components/AuthRoute";
-import Home from "@/pages/Home";
-import Article from "@/pages/Article";
-import Publish from "@/pages/Publish";
+
+const Publish = lazy(() => import("@/pages/Publish"));
+const Article = lazy(() => import("@/pages/Article"));
+const Home = lazy(() => import("@/pages/Home"));
 
 const router = createBrowserRouter([
-  {
-    path: "/login",
-    element: <Login />,
-  },
   {
     path: "/",
     element: (
@@ -21,17 +20,33 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: (
+          <Suspense fallback={"加载中"}>
+            <Home />
+          </Suspense>
+        ),
       },
       {
-        path: "/Article",
-        element: <Article />,
+        path: "article",
+        element: (
+          <Suspense fallback={"加载中"}>
+            <Article />
+          </Suspense>
+        ),
       },
       {
-        path: "/Publish",
-        element: <Publish />,
+        path: "publish",
+        element: (
+          <Suspense fallback={"加载中"}>
+            <Publish />
+          </Suspense>
+        ),
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
