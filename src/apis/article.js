@@ -18,3 +18,20 @@ export function createArticleAPI(data) {
     data,
   });
 }
+
+//获取文章列表
+export function getAtricleListAPI(data) {
+  return request({
+    url: "/mp/articles",
+    method: "GET",
+    data,
+  });
+}
+
+//删除文章
+export function delAtricleAPI(id) {
+  return request({
+    url: `/mp/articles/${id}`,
+    method: "DELETE",
+  });
+}
